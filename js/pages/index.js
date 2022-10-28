@@ -1,51 +1,22 @@
-import { photographerFactory } from "../factories/photographer.js"
-import { LoadData } from "../lib/loadData.js"
+import { PhotographerCardFactory } from "../factories/PhotographerCardFactory.js"
+import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
 
-    async function getPhotographers() {
-        // Penser à remplacer par les données récupérées dans le json
-        const data = new LoadData('../data/photographers.json')
-        return await data.fetchData()
+function displayData(photographers) {
+    const photographersSection = document.querySelector(".photographer_section");
 
-        // const photographers = [
-        //     {
-        //         "name": "Ma data test",
-        //         "id": 1,
-        //         "city": "Paris",
-        //         "country": "France",
-        //         "tagline": "Ceci est ma data test",
-        //         "price": 400,
-        //         "portrait": "account.png"
-        //     },
-        //     {
-        //         "name": "Autre data test",
-        //         "id": 2,
-        //         "city": "Londres",
-        //         "country": "UK",
-        //         "tagline": "Ceci est ma data test 2",
-        //         "price": 500,
-        //         "portrait": "account.png"
-        //     },
-        // ]
-        // // et bien retourner le tableau photographers seulement une fois
-        // return ({
-        //     photographers: [...photographers, ...photographers, ...photographers]})
-    }
+    photographers.forEach((photographer) => {
+        const photographerModel = PhotographerCardFactory(photographer);
+        const userCardDOM = photographerModel.getUserCardDOM();
+        photographersSection.appendChild(userCardDOM);
+    });
+};
 
-    async function displayData(photographers) {
-        const photographersSection = document.querySelector(".photographer_section");
+async function init() {
+    // Récupère les datas des photographes
+    const data = new LoadPhotographersData('../data/photographers.json')
+    await data.fetchData()
+    displayData(data.getPhotographersCards());
+    console.log(data.getPhotographersMedia(925))
+};
 
-        photographers.forEach((photographer) => {
-            const photographerModel = photographerFactory(photographer);
-            const userCardDOM = photographerModel.getUserCardDOM();
-            photographersSection.appendChild(userCardDOM);
-        });
-    };
-
-    async function init() {
-        // Récupère les datas des photographes
-        const  photographers  = await getPhotographers();
-
-        displayData(photographers);
-    };
-
-    init();
+init();
