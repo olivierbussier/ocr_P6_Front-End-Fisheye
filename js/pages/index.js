@@ -13,7 +13,7 @@ function displayData(photographers) {
 
 async function init() {
     // Récupère les datas des photographes
-    const data = new LoadPhotographersData('/data/photographers.json')
+    const data = new LoadPhotographersData('./data/photographers.json')
     await data.fetchData()
     displayData(data.getPhotographersCards());
     console.log(data.getPhotographersMedia(925))
