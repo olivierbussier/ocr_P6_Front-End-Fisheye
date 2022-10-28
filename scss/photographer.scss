@@ -1,11 +1,27 @@
+@import "_mixins";
+
+.container {
+    max-width: 1300px;
+    padding: 20px;
+    margin: auto;
+}
+
 #contact_modal {
     display: none;
 }
 
 .photograph-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background-color: #FAFAFA;
     height: 300px;
-    margin: 0 100px;
+    padding: 0 60px;
+    // margin: 0 100px;
+    & img {
+        @include rounded-image
+    }
 }
 
 .contact_button {
@@ -31,21 +47,18 @@
     justify-content: space-between;
     padding: 35px;
     margin: auto;
-}
-
-.modal header {
-    justify-content: space-between;
-    width: 100%;
-}
-
-.modal header img {
-    cursor: pointer;
-}
-
-.modal header h2 {
-    font-size: 64px;
-    font-weight: normal;
-    text-align: center;
+    & header {
+        justify-content: space-between;
+        width: 100%;
+        & img {
+            cursor: pointer;
+        }
+        & h2 {
+            font-size: 64px;
+            font-weight: normal;
+            text-align: center;
+        }
+    }
 }
 
 form {
@@ -53,24 +66,43 @@ form {
     width: 100%;
     flex-direction: column;
     align-items: flex-start;
+    & label {
+        color: #312E2E;
+        font-size: 36px;
+    }
+    & div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: self-start;
+        margin-bottom: 26px;
+    }
+    & input {
+        width: 100%;
+        height: 68px;
+        border: none;
+        border-radius: 5px;
+    }
 }
 
-form label {
-    color: #312E2E;
-    font-size: 36px;
-}
-
-form div {
+.photograph-gallery {
     display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: self-start;
-    margin-bottom: 26px;
-}
-
-form input {
-    width: 100%;
-    height: 68px;
-    border: none;
-    border-radius: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap:30px;
+    .photograph-image {
+        flex-direction: row;
+        & .image-card {
+            & .media {
+                width: 350px;
+                height: 300px;
+                object-fit: cover;
+            }
+        }
+    }
+    .card-image-header {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
