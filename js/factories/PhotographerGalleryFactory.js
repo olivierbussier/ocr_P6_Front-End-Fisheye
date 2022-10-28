@@ -1,3 +1,14 @@
+function Video(name, src) {
+    this._html =
+    `<video class="media" controls>
+        <source src="assets/gallery/${name}/${src}">
+    </video>`
+}
+
+function Image(name, src) {
+    this._html = `<img class="media" src="assets/gallery/${name}/${src}">`
+}
+
 class PhotographerImageFactory {
     constructor(name, image) {
         this._image = image
@@ -11,20 +22,17 @@ class PhotographerImageFactory {
         let media
 
         if (image) {
-            media = `<img class="media" src="assets/gallery/${this._name}/${image}">`;
+            media = new Image(this._name, image)
         }
         if (video) {
-            media =
-            `<video class="media" controls>
-                <source src="assets/gallery/${this._name}/${video}">
-            </video>`;
+            media = new Video(this._name, video)
         }
 
         const div = document.createElement( 'section' );
         div.setAttribute("class","photograph-image")
         div.innerHTML =
         `<div class="image-card">
-            ${media}
+            ${media._html}
             <div class="card-image-header">
                 <p>${title}</p>
                 <p>${likes}</p>
@@ -32,7 +40,6 @@ class PhotographerImageFactory {
         </div>`
         return div
     }
-
 }
 
 export class PhotographerGalleryFactory {
