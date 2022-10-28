@@ -46,7 +46,7 @@ async function init() {
     const id = stringId === null ? 0 : parseInt(stringId)
 
     // Récupère les datas du photographe
-    const data = new LoadPhotographersData('../data/photographers.json')
+    const data = new LoadPhotographersData('./data/photographers.json')
     await data.fetchData()
     const photographer = data.getPhotographersCards(id)
     const gallery = data.getPhotographersMedia(id)
