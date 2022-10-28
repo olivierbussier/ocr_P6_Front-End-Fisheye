@@ -1,24 +1,8 @@
 export class SortListFactory {
-    constructor(defaultOrder = "titre") {
-        this._sortOrder = defaultOrder
-        this._choices =[
-            {sort: 'Popularité', method: 'popularite'},
-            {sort: 'Date', method: 'date'},
-            {sort: 'Titre', method: 'titre'}
-
-        ]
-    }
-    getDOM() {
-
-        const div = document.createElement( 'div' );
-        div.setAttribute("class","photograph-sort")
-
-        const p = document.createElement( 'p' );
-        p.textContent = "Trier par : "
-        div.appendChild(p)
-
-        const select = document.createElement( 'select' );
-        div.appendChild(select)
+    constructor(choices, defaultChoice) {
+        this._sortOrder = defaultChoice
+        this._choices = choices
+        this._select = document.createElement( 'select' );
 
         this._choices.forEach(element => {
             const option = document.createElement('option')
@@ -26,9 +10,24 @@ export class SortListFactory {
             if (element.method === this._sortOrder)
                 option.setAttribute("selected", "")
             option.textContent = element.sort
-            select.appendChild(option)
+            this._select.appendChild(option)
         });
-        return div
+        this._select.addEventListener('change', (e) => {
+            const sel = e.target
+            const sortValue = sel.options[sel.selectedIndex].value
+            this._sortOrder = sortValue
+            if (this._hook) {
+                this._hook(sortValue)
+            }
+        })
+    }
+
+    setHook(hookFunction) {
+        this._hook = hookFunction
+    }
+
+    getDOM() {
+        return this._select
     }
 
 }

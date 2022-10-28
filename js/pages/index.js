@@ -16,7 +16,6 @@ async function init() {
     const data = new LoadPhotographersData('./data/photographers.json')
     await data.fetchData()
     displayData(data.getPhotographersCards());
-    console.log(data.getPhotographersMedia(925))
 };
 
 init();

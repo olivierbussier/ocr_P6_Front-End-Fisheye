@@ -19,26 +19,47 @@ import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
     headerSection.appendChild(headerPhotographDOM)
 
     // Ajout de la liste de choix de tri
-    const sortList = new SortListFactory().getDOM()
-    headerSection.appendChild(sortList)
+    const div = document.createElement( 'div' );
+    div.setAttribute("class","photograph-sort")
+    const p = document.createElement( 'p' );
+    p.textContent = "Trier par : "
+    div.appendChild(p)
+    const sortList = new SortListFactory([
+        {sort: 'Titre', method: 'titre'},
+        {sort: 'Popularité', method: 'popularite'},
+        {sort: 'Date', method: 'date'}
+    ], 'titre')
+    headerSection.appendChild(sortList.getDOM())
+    sortList.setHook(hookSort)
 
+    function mediaSort(sortMode) {
+        medias.sort((elem1, elem2) => {
+            switch (sortMode) {
+                case 'titre':      return elem1.title.localeCompare(elem2.title); break
+                case 'popularite': return elem1.likes <= elem2.likes ? -1 : 1 ; break
+                case 'date':       return new Date(elem1.date) <= new Date(elem2.date) ? -1 : 1 ; break
+            }
+        })
+    }
+
+    mediaSort('titre')
+    
+    function hookSort(sortMode) {
+        mediaSort(sortMode)
+        const oldGallery = document.querySelector(".photograph-gallery")
+        headerSection.removeChild(oldGallery)
+        const gallery = new PhotographerGalleryFactory(photographer.name, medias).getDOM()
+        headerSection.appendChild(gallery)
+    }
     // Ajout des images
     const gallery = new PhotographerGalleryFactory(photographer.name, medias).getDOM()
     headerSection.appendChild(gallery)
 }
 
-// function displayMedias(photographer) {
-
-//     const photographersSection = document.querySelector(".photographer_section");
-
-//     photographers.forEach((photographer) => {
-//         const photographerModel = photographerFactory(photographer);
-//         const userCardDOM = photographerModel.getUserCardDOM();
-//         photographersSection.appendChild(userCardDOM);
-//     });
-// };
-
-async function init() {
+/**
+ *
+ */
+  async function init() {
 
     // Recherche de l'id du photographe a afficher
     const params = (new URL(document.location)).searchParams;

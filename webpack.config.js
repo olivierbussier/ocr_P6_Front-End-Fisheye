@@ -10,7 +10,8 @@ const stylesHandler = MiniCssExtractPlugin.loader;
 
 const config = {
   entry: {
-    // app: "./js/app.js",
+    index: "./js/pages/index.js",
+    photographer: "./js/pages/photographer.js",
     style: "./scss/style.scss",
   },
   output: {

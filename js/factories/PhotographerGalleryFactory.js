@@ -6,7 +6,7 @@ function Video(name, src) {
 }
 
 function Image(name, src) {
-    this._html = `<img class="media" src="assets/gallery/${name}/${src}">`
+    this._html = `<img class="media" src="assets/gallery/${name}/medium/${src}">`
 }
 
 class PhotographerImageFactory {
