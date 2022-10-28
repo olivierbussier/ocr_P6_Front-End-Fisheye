@@ -1,5 +1,6 @@
 export class LoadPhotographersData {
     constructor (url) {
+        console.log(url)
         this._url = url
         this._data = null
     }
