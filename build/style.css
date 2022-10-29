@@ -114,11 +114,33 @@ form input {
   height: 300px;
   -o-object-fit: cover;
      object-fit: cover;
+  border-radius: 5px;
+}
+.photograph-gallery .photograph-image:last-child {
+  width: 350px;
 }
 .photograph-gallery .card-image-header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  font-size: 24px;
+  color: #901C1C;
+}
+.photograph-gallery .card-image-header p {
+  margin: 10px 0;
+  font-weight: 400;
+  max-width: 290px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.photograph-gallery .card-image-header span {
+  margin: 10px 0;
+  font-weight: 500;
+}
+.photograph-gallery .card-image-header span::after {
+  content: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMTkiIHZpZXdCb3g9IjAgMCAyMCAxOSIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwIDE4LjM1TDguNTUgMTcuMDNDMy40IDEyLjM2IDAgOS4yOCAwIDUuNUMwIDIuNDIgMi40MiAwIDUuNSAwQzcuMjQgMCA4LjkxIDAuODEgMTAgMi4wOUMxMS4wOSAwLjgxIDEyLjc2IDAgMTQuNSAwQzE3LjU4IDAgMjAgMi40MiAyMCA1LjVDMjAgOS4yOCAxNi42IDEyLjM2IDExLjQ1IDE3LjA0TDEwIDE4LjM1WiIgZmlsbD0iIzkxMUMxQyIvPgo8L3N2Zz4K);
+  margin-left: 0.5rem;
 }
 
 main select, main select option::before {

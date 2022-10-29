@@ -1,18 +1,18 @@
 class Video {
-    constructor(name, title, src) {
+    constructor(name, likes, src) {
         this._html =
             `<video class="media" controls>
-                <source src="assets/gallery/${name}/${src}">
+                <source src="assets/gallery/${name}/${src}" aria-label="${likes} likes">
             </video>`
     }
 }
 
 class Image {
-    constructor(name, title, src) {
+    constructor(name, likes, src) {
         this._html = `<img
             class="media"
             src="assets/gallery/${name}/medium/${src}"
-            alt="${title}">`
+            alt="${likes} likes">`
     }
 }
 
@@ -29,10 +29,10 @@ class PhotographerImageFactory {
         let media
 
         if (image) {
-            media = new Image(this._name, title, image)
+            media = new Image(this._name, likes, image)
         }
         if (video) {
-            media = new Video(this._name, title, video)
+            media = new Video(this._name, likes, video)
         }
 
         const div = document.createElement( 'section' );
@@ -42,7 +42,7 @@ class PhotographerImageFactory {
             ${media._html}
             <div class="card-image-header">
                 <p>${title}</p>
-                <p>${likes}</p>
+                <span>${likes}</span>
             </div>
         </div>`
         return div
@@ -55,6 +55,7 @@ export class PhotographerGalleryFactory {
         this._name = name
     }
     getDOM() {
+
         // Article creation
         const div = document.createElement( 'section' );
         div.setAttribute("class","photograph-gallery")
@@ -62,6 +63,10 @@ export class PhotographerGalleryFactory {
         this._images.forEach((image) => {
             div.appendChild(new PhotographerImageFactory(this._name, image).getDOM())
         })
+        var e = document.createElement( 'section' )
+        e.setAttribute('class', 'photograph-image')
+        div.appendChild(e);
+
         return div
     }
 }
