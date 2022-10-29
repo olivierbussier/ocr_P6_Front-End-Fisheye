@@ -47,6 +47,9 @@ import { customListBox } from "../components/listbox.js"
     mediaSort('titre')
 
     headerSection.appendChild(div)
+
+    // Fonction de tri des médias, déclenchée par un click dans a liste de choix
+    // de tri
     function hookSort(sortMode) {
         mediaSort(sortMode)
         const oldGallery = document.querySelector(".photograph-gallery")

@@ -1,6 +1,6 @@
 export function PhotographerHeaderFactory(data) {
     const { name, portrait, city, country, tagline } = data;
-    const picture = `assets/photographers/${portrait}`;
+    const picture = `assets/photographers/thumbs/${portrait}`;
 
     function getDOM() {
 
