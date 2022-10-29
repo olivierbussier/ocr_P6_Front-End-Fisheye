@@ -2,9 +2,9 @@
 
 import { PhotographerHeaderFactory } from "../factories/PhotographerHeaderFactory.js"
 import { PhotographerGalleryFactory } from "../factories/PhotographerGalleryFactory.js"
-import { SortListFactory } from "../factories/SortListFactory.js"
 
 import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
+import { customListBox } from "../components/listbox.js"
 
 /**
  * affichage
@@ -24,12 +24,13 @@ import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
     const p = document.createElement( 'p' );
     p.textContent = "Trier par : "
     div.appendChild(p)
-    const sortList = new SortListFactory([
+    const sortList = new customListBox([
         {sort: 'Titre', method: 'titre'},
         {sort: 'Popularité', method: 'popularite'},
         {sort: 'Date', method: 'date'}
     ], 'titre')
-    headerSection.appendChild(sortList.getDOM())
+    headerSection.appendChild(sortList.getCustomElement())
+
     sortList.setHook(hookSort)
 
     function mediaSort(sortMode) {
@@ -43,7 +44,7 @@ import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
     }
 
     mediaSort('titre')
-    
+
     function hookSort(sortMode) {
         mediaSort(sortMode)
         const oldGallery = document.querySelector(".photograph-gallery")

@@ -110,6 +110,77 @@ form input {
   justify-content: space-between;
 }
 
+main select, main select option::before {
+  padding: 1em 3em;
+  margin: 2em 0;
+  background-color: #901C1C;
+  color: white;
+  font-weight: 700;
+  font-size: 18px;
+  content: "";
+  border-bottom: 1px white solid;
+}
+
+/* The container must be positioned relative: */
+.custom-select {
+  position: relative;
+  font-family: Arial;
+  width: 200px;
+}
+.custom-select select {
+  display: none; /*hide original SELECT element: */
+}
+
+.select-selected {
+  background-color: #901C1C;
+  color: white;
+  padding: 1em 0;
+  border-radius: 5px;
+  cursor: pointer;
+  padding-left: 1em;
+  /* Style the arrow inside the select element: */
+  /* Point the arrow upwards when the select box is open (active): */
+}
+.select-selected:after {
+  position: absolute;
+  content: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzEyMF80MzApIj4KPHBhdGggZD0iTTIyLjEyIDExLjQ1MzFMMTYgMTcuNTU5OEw5Ljg4IDExLjQ1MzFMOCAxMy4zMzMxTDE2IDIxLjMzMzFMMjQgMTMuMzMzMUwyMi4xMiAxMS40NTMxWiIgZmlsbD0id2hpdGUiLz4KPC9nPgo8ZGVmcz4KPGNsaXBQYXRoIGlkPSJjbGlwMF8xMjBfNDMwIj4KPHJlY3Qgd2lkdGg9IjMyIiBoZWlnaHQ9IjMyIiBmaWxsPSJ3aGl0ZSIvPgo8L2NsaXBQYXRoPgo8L2RlZnM+Cjwvc3ZnPgo=);
+  top: calc(50% - 15px);
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+}
+.select-selected.select-arrow-active:after {
+  content: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGcgY2xpcC1wYXRoPSJ1cmwoI2NsaXAwXzEyMF80NDIpIj4KPHBhdGggZD0iTTkuODggMjAuNTQ2OUwxNiAxNC40NDAyTDIyLjEyIDIwLjU0NjlMMjQgMTguNjY2OUwxNiAxMC42NjY5TDggMTguNjY2OUw5Ljg4IDIwLjU0NjlaIiBmaWxsPSJ3aGl0ZSIvPgo8L2c+CjxkZWZzPgo8Y2xpcFBhdGggaWQ9ImNsaXAwXzEyMF80NDIiPgo8cmVjdCB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIGZpbGw9IndoaXRlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSgzMiAzMikgcm90YXRlKC0xODApIi8+CjwvY2xpcFBhdGg+CjwvZGVmcz4KPC9zdmc+Cg==);
+}
+
+/* Style items (options): */
+.select-items {
+  border-radius: 5px;
+  position: absolute;
+  background-color: #901C1C;
+  top: 92%;
+  left: 0;
+  right: 0;
+  z-index: 99;
+  /* style the items (options), including the selected item: */
+}
+.select-items div {
+  color: white;
+  padding: 1em 0;
+  margin: 0 1em;
+  border-top: 1px solid white;
+  cursor: pointer;
+}
+.select-items div:hover, .select-items .same-as-selected {
+  background-color: #DB8876;
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
 body {
   font-family: "DM Sans", sans-serif;
   margin: 0;

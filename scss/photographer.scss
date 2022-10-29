@@ -106,3 +106,14 @@ form {
         justify-content: space-between;
     }
 }
+
+main select, main select option::before {
+    padding: 1em 3em;
+    margin: 2em 0   ;
+    background-color: #901C1C;
+    color: white;
+    font-weight: 700;
+    font-size: 18px;
+    content:'';
+    border-bottom: 1px white solid;
+}

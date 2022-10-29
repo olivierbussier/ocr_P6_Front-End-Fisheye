@@ -4,7 +4,13 @@ export class SortListFactory {
         this._choices = choices
         this._select = document.createElement( 'select' );
 
+        let cnt = 0
         this._choices.forEach(element => {
+            if (cnt++ > 0) {
+                const option = document.createElement('option')
+                option.setAttribute("disabled", "")
+                this._select.appendChild(option)
+            }
             const option = document.createElement('option')
             option.setAttribute("value", element.method)
             if (element.method === this._sortOrder)

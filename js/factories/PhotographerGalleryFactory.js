@@ -1,12 +1,16 @@
-function Video(name, src) {
-    this._html =
-    `<video class="media" controls>
-        <source src="assets/gallery/${name}/${src}">
-    </video>`
+class Video {
+    constructor(name, src) {
+        this._html =
+            `<video class="media" controls>
+                <source src="assets/gallery/${name}/${src}">
+            </video>`
+    }
 }
 
-function Image(name, src) {
-    this._html = `<img class="media" src="assets/gallery/${name}/medium/${src}">`
+class Image {
+    constructor(name, src) {
+        this._html = `<img class="media" src="assets/gallery/${name}/medium/${src}">`
+    }
 }
 
 class PhotographerImageFactory {
