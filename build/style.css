@@ -20,6 +20,17 @@
   height: 300px;
   padding: 0 60px;
 }
+.photograph-header h1 {
+  color: #D3573C;
+  font-size: 64px;
+  font-weight: 400;
+  margin: 0;
+  padding: 0;
+}
+.photograph-header h2 {
+  margin: 0;
+  color: #901C1C;
+}
 .photograph-header img {
   height: 200px;
   width: 200px;
@@ -121,6 +132,16 @@ main select, main select option::before {
   border-bottom: 1px white solid;
 }
 
+.photograph-sort {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+.photograph-sort p {
+  font-weight: 900;
+  padding: 20px 0;
+}
+
 /* The container must be positioned relative: */
 .custom-select {
   position: relative;
@@ -201,7 +222,6 @@ h1 {
 
 .logo {
   height: 50px;
-  margin-left: 100px;
 }
 
 .photographer_section {

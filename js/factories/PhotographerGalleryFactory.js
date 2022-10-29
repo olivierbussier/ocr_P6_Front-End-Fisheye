@@ -1,5 +1,5 @@
 class Video {
-    constructor(name, src) {
+    constructor(name, title, src) {
         this._html =
             `<video class="media" controls>
                 <source src="assets/gallery/${name}/${src}">
@@ -8,8 +8,11 @@ class Video {
 }
 
 class Image {
-    constructor(name, src) {
-        this._html = `<img class="media" src="assets/gallery/${name}/medium/${src}">`
+    constructor(name, title, src) {
+        this._html = `<img
+            class="media"
+            src="assets/gallery/${name}/medium/${src}"
+            alt="${title}">`
     }
 }
 
@@ -26,10 +29,10 @@ class PhotographerImageFactory {
         let media
 
         if (image) {
-            media = new Image(this._name, image)
+            media = new Image(this._name, title, image)
         }
         if (video) {
-            media = new Video(this._name, video)
+            media = new Video(this._name, title, video)
         }
 
         const div = document.createElement( 'section' );

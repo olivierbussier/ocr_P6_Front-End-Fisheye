@@ -9,8 +9,8 @@ export function PhotographerHeaderFactory(data) {
         div.setAttribute("class","photograph-header")
         div.innerHTML =
             `<div>
-                <h2>${name}</h2>
-                <p class="city">${city}, ${country}</p>
+                <h1>${name}</h1>
+                <h2 class="city">${city}, ${country}</h2>
                 <p class="tagline">${tagline}</p>
             </div>
             <button class="contact_button" onclick="displayModal()">Contactez-moi</button>

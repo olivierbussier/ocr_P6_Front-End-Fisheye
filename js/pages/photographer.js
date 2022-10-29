@@ -24,12 +24,13 @@ import { customListBox } from "../components/listbox.js"
     const p = document.createElement( 'p' );
     p.textContent = "Trier par : "
     div.appendChild(p)
+
     const sortList = new customListBox([
         {sort: 'Titre', method: 'titre'},
         {sort: 'Popularité', method: 'popularite'},
         {sort: 'Date', method: 'date'}
     ], 'titre')
-    headerSection.appendChild(sortList.getCustomElement())
+    div.appendChild(sortList.getCustomElement())
 
     sortList.setHook(hookSort)
 
@@ -45,6 +46,7 @@ import { customListBox } from "../components/listbox.js"
 
     mediaSort('titre')
 
+    headerSection.appendChild(div)
     function hookSort(sortMode) {
         mediaSort(sortMode)
         const oldGallery = document.querySelector(".photograph-gallery")
