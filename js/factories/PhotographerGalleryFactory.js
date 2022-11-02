@@ -46,7 +46,7 @@ class PhotographerImageFactory {
                 <p>${title}</p>
                 <div>
                     <span>${likes}</span>
-                    <img class="increment-likes" data-id="${id}" src="/assets/icons/heart.svg">
+                    <img class="increment-likes" data-id="${id}" src="assets/icons/heart.svg">
                 </div>
             </div>
         </div>`
