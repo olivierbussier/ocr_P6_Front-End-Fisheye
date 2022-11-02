@@ -1,39 +1,48 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
+import { setupEventModal } from "./contactForm.js"
+
 import { PhotographerHeaderFactory } from "../factories/PhotographerHeaderFactory.js"
 import { PhotographerGalleryFactory } from "../factories/PhotographerGalleryFactory.js"
 
 import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
 import { customListBox } from "../components/listbox.js"
+import { PhotographerSummaryFactory } from "../factories/PhotographerSummaryFactory.js"
 
 /**
- * affichage
+ *
+ * @param {{name: string,id: number,city: string,country: string,tagline: string,price: number, portrait: string}[]} photographer
+ * @param {{id: number, photographerId: number, title: string, image: string, likes: number, date: date, price: number}[]} medias
  */
- function displayHeader(photographer, medias) {
+function display(photographer, medias) {
 
-    const headerSection = document.querySelector("main")
+    const headerInfo  = document.querySelector(".photograph-info")
+    const headerImage = document.querySelector(".photograph-image")
+    const divMain     = document.querySelector("#main")
+    const divSearch   = document.querySelector(".photograph-sort")
+    const summary     = document.getElementById("summary")
 
     // Ajout du header
-    const headerPhotograph = PhotographerHeaderFactory(photographer)
-    const headerPhotographDOM = headerPhotograph.getDOM()
-    headerSection.appendChild(headerPhotographDOM)
+    const {divInfo, divImage } = PhotographerHeaderFactory(photographer)
+    headerInfo.appendChild(divInfo)
+    headerImage.appendChild(divImage)
 
     // Ajout de la liste de choix de tri
-    const div = document.createElement( 'div' );
-    div.setAttribute("class","photograph-sort")
-    const p = document.createElement( 'p' );
-    p.textContent = "Trier par : "
-    div.appendChild(p)
 
     const sortList = new customListBox([
         {sort: 'Titre', method: 'titre'},
         {sort: 'Popularité', method: 'popularite'},
         {sort: 'Date', method: 'date'}
     ], 'titre')
-    div.appendChild(sortList.getCustomElement())
+    divSearch.appendChild(sortList.getCustomElement())
 
     sortList.setHook(hookSort)
 
+    /**
+     * Fonction de tri
+     *
+     * @param {string} sortMode
+     */
     function mediaSort(sortMode) {
         medias.sort((elem1, elem2) => {
             switch (sortMode) {
@@ -46,20 +55,66 @@ import { customListBox } from "../components/listbox.js"
 
     mediaSort('titre')
 
-    headerSection.appendChild(div)
-
-    // Fonction de tri des médias, déclenchée par un click dans a liste de choix
-    // de tri
+    /**
+     * Fonction de gestion du tri des médias,
+     * déclenchée par un click dans a liste de choix
+     *
+     * @param {string} sortMode
+     */
     function hookSort(sortMode) {
         mediaSort(sortMode)
         const oldGallery = document.querySelector(".photograph-gallery")
-        headerSection.removeChild(oldGallery)
+        divMain.removeChild(oldGallery)
         const gallery = new PhotographerGalleryFactory(photographer.name, medias).getDOM()
-        headerSection.appendChild(gallery)
+        displaycumulatedLikes()
+        divMain.appendChild(gallery)
+        setHookIncrementLikes()
     }
-    // Ajout des images
+
+    function displaycumulatedLikes() {
+        const child       = summary.querySelector('.photograph-summary')
+        // Mise à jour de la boite summary
+        if (child)
+            summary.removeChild(child)
+
+        // Calcul du cumul du nombre de likes
+        summary.appendChild(PhotographerSummaryFactory(photographer, medias))
+
+    }
+
+    function setHookIncrementLikes() {
+        document.querySelectorAll("img.increment-likes").forEach((element) => {
+            element.addEventListener("click", (element) => {
+                const id = element.target.getAttribute('data-id')
+                medias.forEach((media) => {
+                    // console.log(media.id)
+                    if (media.id === parseInt(id)) {
+                        media.likes++
+                        console.log(media.likes)
+                        // Update du compteur de likes
+                        const span = element.target.previousElementSibling
+                        span.innerText = media.likes
+                        displaycumulatedLikes()
+                    }
+                })
+            })
+        })
+    }
+    // Affichage des images de la gallerie triées
     const gallery = new PhotographerGalleryFactory(photographer.name, medias).getDOM()
-    headerSection.appendChild(gallery)
+    divMain.appendChild(gallery)
+
+    function setHookAffFullImage() {
+        medias.forEach((media) => {
+            
+        })
+    }
+    displaycumulatedLikes()
+    setHookIncrementLikes()
+
+    // Mise en place des hooks pour incrémenter les likes
+
+
 }
 
 /**
@@ -76,9 +131,18 @@ import { customListBox } from "../components/listbox.js"
     const data = new LoadPhotographersData('./data/photographers.json')
     await data.fetchData()
     const photographer = data.getPhotographersCards(id)
+
+    // Redirection vers la page d'accueil si le photographe n'existe pas
+    if (!id || !photographer) {
+        window.location.href = "index.html";
+    }
     const gallery = data.getPhotographersMedia(id)
 
-    displayHeader(photographer, gallery)
+    display(photographer, gallery)
+
+    // Mise en place des hooks pour les fenêtres modal
+
+    setupEventModal()
 }
 
 init();

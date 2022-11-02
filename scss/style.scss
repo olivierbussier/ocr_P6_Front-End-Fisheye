@@ -1,76 +1,16 @@
 @import "variables";
+
+// Styles de base
+@import "base";
+
+// Mixins et functions
 @import "mixins";
-@import "photographer";
-@import "components";
 
-body {
-    font-family: "DM Sans", sans-serif;
-    margin: 0;
-}
+// styles de pages
+@import "photographer",     // index.html
+        "photographers";    // photographe.html
 
-
-header {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-}
-
-h1 {
-    color: #901C1C;
-    margin-right: 100px;
-}
-
-.logo {
-    height: 50px;
-    // margin-left: 100px;
-}
-
-.photographer_section {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 100px;
-    & article {
-        display: flex;
-        flex-direction: column;
-        justify-self: center;
-        justify-content: center;
-        align-items: center;
-        & a.link {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-decoration: none;
-        }
-        & h2 {
-            color: #D3573C;
-            font-size: 36px;
-            margin-top: 0.5em;
-            margin-bottom: 0;
-        }
-        & a img {
-            @include rounded-image()
-        }
-        & p.city {
-            font-size: 13px;
-            margin-top: 0;
-            padding-top: 0;
-            color: #D3573C;
-        }
-        & p.tagline {
-            font-size: 10px;
-            margin-top: 0;
-            padding-top: 0;
-            color: black;
-        }
-        & p.price {
-            font-size: 9px;
-            margin-top: 0;
-            padding-top: 0;
-            color: #757575;
-        }
-
-    }
-}
+// Composants
+@import "filter",
+        "modal",
+        "lightbox";

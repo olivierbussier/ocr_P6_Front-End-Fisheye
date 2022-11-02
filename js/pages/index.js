@@ -2,7 +2,7 @@ import { PhotographerCardFactory } from "../factories/PhotographerCardFactory.js
 import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
 
 function displayData(photographers) {
-    const photographersSection = document.querySelector(".photographer_section");
+    const photographersSection = document.querySelector(".photographers-section");
 
     photographers.forEach((photographer) => {
         const photographerModel = PhotographerCardFactory(photographer);

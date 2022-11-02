@@ -1,23 +1,23 @@
-export function PhotographerHeaderFactory(data) {
-    const { name, portrait, city, country, tagline } = data;
+/**
+ * Permet de créér le header spécifique d'un photographe dont les
+ * données sont passées en paramètre
+ *
+ * @param {{ name:string, portrait:string, city:string, country:string, tagline:string }} photographerInfo
+ * @returns {HTMLElement}
+ */
+export function PhotographerHeaderFactory(photographerInfo) {
+    const { name, portrait, city, country, tagline } = photographerInfo;
     const picture = `assets/photographers/thumbs/${portrait}`;
 
-    function getDOM() {
+    // Article creation
+    const divInfo = document.createElement( 'div' );
+    divInfo.innerHTML =
+        `<h1>${name}</h1>
+         <h2 class="city">${city}, ${country}</h2>
+         <p class="tagline">${tagline}</p>`
 
-        // Article creation
-        const div = document.createElement( 'section' );
-        div.setAttribute("class","photograph-header")
-        div.innerHTML =
-            `<div>
-                <h1>${name}</h1>
-                <h2 class="city">${city}, ${country}</h2>
-                <p class="tagline">${tagline}</p>
-            </div>
-            <button class="contact_button" onclick="displayModal()">Contactez-moi</button>
-            <div>
-                <img class="image" src="${picture}" alt="${name}"></img>
-            </div>`
-        return div
-    }
-    return { getDOM }
+    const divImage = document.createElement( 'div' );
+    divImage.innerHTML =
+         `<img class="image" src="${picture}" alt="${name}"></img>`
+    return {divInfo, divImage}
 }

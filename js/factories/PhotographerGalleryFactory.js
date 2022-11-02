@@ -1,7 +1,7 @@
 class Video {
     constructor(name, likes, src) {
         this._html =
-            `<video class="media" controls>
+            `<video class="media" nocontrols>
                 <source src="assets/gallery/${name}/${src}" aria-label="${likes} likes">
             </video>`
     }
@@ -26,6 +26,8 @@ class PhotographerImageFactory {
         const video = this._image.video
         const title = this._image.title
         const likes = this._image.likes
+        const id    = this._image.id
+
         let media
 
         if (image) {
@@ -42,7 +44,10 @@ class PhotographerImageFactory {
             ${media._html}
             <div class="card-image-header">
                 <p>${title}</p>
-                <span>${likes}</span>
+                <div>
+                    <span>${likes}</span>
+                    <img class="increment-likes" data-id="${id}" src="/assets/icons/heart.svg">
+                </div>
             </div>
         </div>`
         return div
@@ -61,7 +66,9 @@ export class PhotographerGalleryFactory {
         div.setAttribute("class","photograph-gallery")
 
         this._images.forEach((image) => {
-            div.appendChild(new PhotographerImageFactory(this._name, image).getDOM())
+            const im = new PhotographerImageFactory(this._name, image).getDOM()
+            const cc = im.querySelector('span.cumul-likes')
+            div.appendChild(im)
         })
         var e = document.createElement( 'section' )
         e.setAttribute('class', 'photograph-image')
