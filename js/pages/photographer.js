@@ -87,10 +87,8 @@ function display(photographer, medias) {
             element.addEventListener("click", (element) => {
                 const id = element.target.getAttribute('data-id')
                 medias.forEach((media) => {
-                    // console.log(media.id)
                     if (media.id === parseInt(id)) {
                         media.likes++
-                        console.log(media.likes)
                         // Update du compteur de likes
                         const span = element.target.previousElementSibling
                         span.innerText = media.likes
@@ -106,7 +104,7 @@ function display(photographer, medias) {
 
     function setHookAffFullImage() {
         medias.forEach((media) => {
-            
+
         })
     }
     displaycumulatedLikes()

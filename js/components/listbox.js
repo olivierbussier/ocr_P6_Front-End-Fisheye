@@ -1,6 +1,3 @@
-function l(a) {
-    console.log(a)
-}
 export class customListBox {
 
     constructor(choices, defaultChoice) {

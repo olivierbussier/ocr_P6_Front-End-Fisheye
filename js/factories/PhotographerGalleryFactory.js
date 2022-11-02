@@ -1,22 +1,37 @@
-class Video {
-    constructor(name, likes, src) {
+import { LightBoxFactory } from "./LightBoxFactory.js"
+
+export class Video {
+    constructor(name, likes, src, type = 'thumb') {
+        var controls
+        if (type === 'thumb') {
+            controls = 'class="media" nocontrols'
+        } else if (type === 'full') {
+            controls = 'class="img-full" controls'
+        } else {
+            throw("erreur")
+        }
         this._html =
-            `<video class="media" nocontrols>
-                <source src="assets/gallery/${name}/${src}" aria-label="${likes} likes">
-            </video>`
+        `<video ${controls}>
+            <source src="assets/gallery/${name}/${src}" aria-label="${likes} likes">
+        </video>`
+        console.log(this._html)
     }
 }
 
-class Image {
-    constructor(name, likes, src) {
-        this._html = `<img
-            class="media"
-            src="assets/gallery/${name}/medium/${src}"
-            alt="${likes} likes">`
+export class Image {
+    constructor(name, likes, src, type = 'thumb') {
+        if (type === 'thumb') {
+            this._html = `<img class="media" src="assets/gallery/${name}/medium/${src}" alt="${likes} likes">`
+        } else if (type === 'full') {
+            this._html = `<img class="img-full" src="assets/gallery/${name}/${src}" alt="${src} likes">`
+
+        } else {
+            throw("erreur")
+        }
     }
 }
 
-class PhotographerImageFactory {
+class PhotographerMediaFactory {
     constructor(name, image) {
         this._image = image
         this._name = name
@@ -58,16 +73,25 @@ export class PhotographerGalleryFactory {
     constructor(name, images) {
         this._images = images
         this._name = name
+
     }
+
+    // Function used to track click on image
+
     getDOM() {
 
         // Article creation
         const div = document.createElement( 'section' );
         div.setAttribute("class","photograph-gallery")
 
+        const lbf = new LightBoxFactory(this._name, this._images)
+
         this._images.forEach((image) => {
-            const im = new PhotographerImageFactory(this._name, image).getDOM()
-            const cc = im.querySelector('span.cumul-likes')
+            const im = new PhotographerMediaFactory(this._name, image).getDOM()
+            // Mise en place des evt d'affichage des images entières
+            im.addEventListener('click', (event) => {
+                lbf.listenImage(event)
+            })
             div.appendChild(im)
         })
         var e = document.createElement( 'section' )
