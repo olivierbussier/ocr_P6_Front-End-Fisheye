@@ -9,6 +9,7 @@ export class LightBoxFactory {
         this._prevDiv.addEventListener('click', (event) => this.prevNextEventHandler('prev'))
         this._nextDiv.addEventListener('click', (event) => this.prevNextEventHandler('next'))
         this.listenControls()
+        this._images.forEach((elem, index) => console.log(index, elem))
     }
 
     listenControls() {
@@ -21,7 +22,8 @@ export class LightBoxFactory {
 
     prevNextEventHandler(divText) {
         const div = document.querySelector('#light-box div.' + divText)
-        this.affFullImage(div.getAttribute('data-id'))
+        if (!div.getAttribute('disabled'))
+            this.affFullImage(div.getAttribute('data-id'))
     }
 
     affFullImage(id) {
@@ -43,16 +45,22 @@ export class LightBoxFactory {
                 if (index > 0) {
                     prevImage = this._images[index - 1]
                     this._prevDiv.setAttribute('data-id', prevImage.id)
+                    this._prevDiv.classList.remove('disabled')
+                    console.log('prev', prevImage)
                 } else {
-                    this._prevDiv.setAttribute('disabled', '')
                     this._prevDiv.setAttribute('data-id', '')
+                    this._prevDiv.classList.add('disabled')
+                    console.log('No prev')
                 }
                 if (index < this._images.length - 1) {
                     nextImage = this._images[index+1]
                     this._nextDiv.setAttribute('data-id', nextImage.id)
+                    this._nextDiv.classList.remove('disabled')
+                    console.log('next', nextImage)
                 } else {
-                    this._nextDiv.setAttribute('disabled', '')
                     this._nextDiv.setAttribute('data-id', '')
+                    this._nextDiv.classList.add('disabled')
+                    console.log('No next')
                 }
             }
         })

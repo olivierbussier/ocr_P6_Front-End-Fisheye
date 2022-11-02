@@ -373,6 +373,11 @@ form textarea {
        user-select: none;
   -webkit-user-select: none;
 }
+#light-box .modal-content .prev.disabled,
+#light-box .modal-content .next.disabled {
+  opacity: 0.1;
+  cursor: inherit;
+}
 #light-box .modal-content .img-full {
   opacity: 1;
   -o-object-fit: contain;

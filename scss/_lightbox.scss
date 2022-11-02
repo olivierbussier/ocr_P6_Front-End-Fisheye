@@ -52,6 +52,10 @@
         border-radius: 0 3px 3px 0;
         user-select: none;
         -webkit-user-select: none;
+        &.disabled {
+          opacity: 0.1;
+          cursor:inherit;
+        }
       }
       .img-full {
         opacity: 1;

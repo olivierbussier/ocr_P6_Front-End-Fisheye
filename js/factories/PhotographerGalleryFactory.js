@@ -14,7 +14,6 @@ export class Video {
         `<video ${controls}>
             <source src="assets/gallery/${name}/${src}" aria-label="${likes} likes">
         </video>`
-        console.log(this._html)
     }
 }
 
