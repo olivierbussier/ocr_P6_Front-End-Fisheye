@@ -289,7 +289,7 @@ main select, main select option::before {
   align-items: center;
   justify-content: space-between;
   padding: 35px;
-  margin: auto;
+  margin: 5em auto auto auto;
 }
 .modal header {
   justify-content: space-between;
