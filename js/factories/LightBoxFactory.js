@@ -16,30 +16,51 @@ export class LightBoxFactory {
         this._prevDiv = newPrevDiv
         this._nextDiv = newNextDiv
 
-        this._prevDiv.addEventListener('click', (event) => this.prevNextEventHandler('prev'))
-        this._nextDiv.addEventListener('click', (event) => this.prevNextEventHandler('next'))
         this.listenControls()
     }
 
+    closeHook(keyCode) {
+        if (keyCode === 27) {
+        const lightBox = document.querySelector('#light-box')
+        lightBox.setAttribute('style','display: none')
+        }
+
+    }
     /**
      *
      */
     listenControls() {
-        // Set-up events to close modal
-        document.querySelector('#light-box img.close-item').addEventListener('click', (event) => {
-            const lightBox = document.querySelector('#light-box')
-            lightBox.setAttribute('style','display: none')
-        })
+        // Click sur images < et >
+        this._prevDiv.addEventListener('click', (event) => this.prevNextEventHandler(37))
+        this._nextDiv.addEventListener('click', (event) => this.prevNextEventHandler(39))
+
+        // Fleches gauches et droite
+        window.addEventListener('keydown', (event) => this.prevNextEventHandler(event.keyCode))
+
+        // click sur image X
+        document.querySelector('#light-box img.close-item').addEventListener('click', (event) => this.closeHook(27))
+        window.addEventListener('keydown', (event) => this.closeHook(event.keyCode))
     }
 
     /**
      *
      * @param {string} divText
      */
-    prevNextEventHandler(divText) {
+    prevNextEventHandler(key = null) {
+
+        var divText
+
+        if (key === 37) {
+            divText = 'prev'
+        } else if (key === 39) {
+            divText = 'next'
+        } else {
+            return
+        }
         const div = document.querySelector('#light-box div.' + divText)
-        if (!div.getAttribute('disabled'))
+        if (!div.getAttribute('disabled')) {
             this.affFullImage(div.getAttribute('data-id'))
+        }
     }
 
     /**
