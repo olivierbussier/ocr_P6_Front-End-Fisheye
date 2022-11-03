@@ -6,7 +6,7 @@ import { PhotographerHeaderFactory } from "../factories/PhotographerHeaderFactor
 import { PhotographerGalleryFactory } from "../factories/PhotographerGalleryFactory.js"
 
 import { LoadPhotographersData } from "../lib/LoadPhotographersData.js"
-import { customListBox } from "../components/listbox.js"
+import { CustomListBox } from "../components/CustomListbox.js"
 import { PhotographerSummaryFactory } from "../factories/PhotographerSummaryFactory.js"
 
 /**
@@ -29,12 +29,12 @@ function display(photographer, medias) {
 
     // Ajout de la liste de choix de tri
 
-    const sortList = new customListBox([
-        {sort: 'Titre', method: 'titre'},
-        {sort: 'Popularité', method: 'popularite'},
-        {sort: 'Date', method: 'date'}
+    const sortList = new CustomListBox([
+        {label: 'Titre'     , action: 'titre'},
+        {label: 'Popularité', action: 'popularite'},
+        {label: 'Date'      , action: 'date'}
     ], 'titre')
-    divSearch.appendChild(sortList.getCustomElement())
+    divSearch.appendChild(sortList.getDomElement())
 
     sortList.setHook(hookSort)
 
