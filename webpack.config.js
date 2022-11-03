@@ -12,7 +12,8 @@ const config = {
   entry: {
     index: "./js/pages/index.js",
     photographer: "./js/pages/photographer.js",
-    style: "./scss/style.scss",
+    style_index: "./scss/style_index.scss",
+    style_photographer: "./scss/style_photographer.scss",
   },
   output: {
     path: path.resolve(__dirname, "build"),
