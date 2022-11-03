@@ -4,7 +4,7 @@ export class Video {
     constructor(name, likes, src, type = 'thumb') {
         var controls
         if (type === 'thumb') {
-            controls = 'class="media" nocontrols'
+            controls = 'class="media" controls'
         } else if (type === 'full') {
             controls = 'class="img-full" controls'
         } else {
@@ -60,7 +60,7 @@ class PhotographerMediaFactory {
                 <p>${title}</p>
                 <div>
                     <span>${likes}</span>
-                    <img class="increment-likes" data-id="${id}" src="assets/icons/heart.svg">
+                    <img class="increment-likes" data-id="${id}" src="assets/icons/heart.svg" alt="Incrémenter le compteur de likes">
                 </div>
             </div>
         </div>`
@@ -87,8 +87,9 @@ export class PhotographerGalleryFactory {
 
         this._images.forEach((image) => {
             const im = new PhotographerMediaFactory(this._name, image).getDOM()
+            const target = im.querySelector('.media')
             // Mise en place des evt d'affichage des images entières
-            im.addEventListener('click', (event) => {
+            target.addEventListener('click', (event) => {
                 lbf.listenImage(event)
             })
             div.appendChild(im)
