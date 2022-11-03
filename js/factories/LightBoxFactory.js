@@ -6,12 +6,24 @@ export class LightBoxFactory {
         this._images = images
         this._prevDiv = document.querySelector('#light-box div.prev')
         this._nextDiv = document.querySelector('#light-box div.next')
+
+        var new_element
+        const newPrevDiv = this._prevDiv.cloneNode(true);
+        this._prevDiv.parentNode.replaceChild(newPrevDiv, this._prevDiv);
+        const newNextDiv = this._nextDiv.cloneNode(true);
+        this._nextDiv.parentNode.replaceChild(newNextDiv, this._nextDiv);
+
+        this._prevDiv = newPrevDiv
+        this._nextDiv = newNextDiv
+
         this._prevDiv.addEventListener('click', (event) => this.prevNextEventHandler('prev'))
         this._nextDiv.addEventListener('click', (event) => this.prevNextEventHandler('next'))
         this.listenControls()
-        this._images.forEach((elem, index) => console.log(index, elem))
     }
 
+    /**
+     *
+     */
     listenControls() {
         // Set-up events to close modal
         document.querySelector('#light-box img.close-item').addEventListener('click', (event) => {
@@ -20,12 +32,20 @@ export class LightBoxFactory {
         })
     }
 
+    /**
+     *
+     * @param {string} divText
+     */
     prevNextEventHandler(divText) {
         const div = document.querySelector('#light-box div.' + divText)
         if (!div.getAttribute('disabled'))
             this.affFullImage(div.getAttribute('data-id'))
     }
 
+    /**
+     *
+     * @param {integer} id
+     */
     affFullImage(id) {
         this._images.forEach((elem, index) => {
             if (elem.id === parseInt(id)) {
@@ -46,26 +66,26 @@ export class LightBoxFactory {
                     prevImage = this._images[index - 1]
                     this._prevDiv.setAttribute('data-id', prevImage.id)
                     this._prevDiv.classList.remove('disabled')
-                    console.log('prev', prevImage)
                 } else {
                     this._prevDiv.setAttribute('data-id', '')
                     this._prevDiv.classList.add('disabled')
-                    console.log('No prev')
                 }
                 if (index < this._images.length - 1) {
                     nextImage = this._images[index+1]
                     this._nextDiv.setAttribute('data-id', nextImage.id)
                     this._nextDiv.classList.remove('disabled')
-                    console.log('next', nextImage)
                 } else {
                     this._nextDiv.setAttribute('data-id', '')
                     this._nextDiv.classList.add('disabled')
-                    console.log('No next')
                 }
             }
         })
     }
 
+    /**
+     *
+     * @param {event} event
+     */
     listenImage(event) {
         const id = event.target.parentNode.querySelector('img[data-id]').getAttribute('data-id')
         this.affFullImage(id)
