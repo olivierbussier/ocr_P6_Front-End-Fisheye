@@ -49,8 +49,8 @@
         justify-content: space-between;
         font-size: 24px;
         color: $list-bg-color;
-        p {
-            margin: 10px 0;
+        h3 {
+            margin: 5px 0;
             font-weight: 400;
             max-width: 290px;
             white-space: nowrap;
@@ -79,7 +79,8 @@ main select, main select option::before {
     display: flex;
     align-items: center;
     gap: 40px;
-    p {
+    margin: 2em 0;
+    label {
         font-weight: 900;
         padding: 20px 0;
     }

@@ -57,10 +57,10 @@ class PhotographerMediaFactory {
         `<div class="image-card">
             ${media._html}
             <div class="card-image-header">
-                <p>${title}</p>
+                <h3>${title}</h3>
                 <div>
                     <span>${likes}</span>
-                    <img class="increment-likes" data-id="${id}" src="assets/icons/heart.svg" alt="Incrémenter le compteur de likes">
+                    <img class="increment-likes heart" data-id="${id}" src="assets/icons/heart.svg" alt="Incrémenter le compteur de likes">
                 </div>
             </div>
         </div>`

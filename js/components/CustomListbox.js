@@ -36,7 +36,7 @@ export class CustomListBox {
      * @param {{label: string, action: string}[]} choices Liste des options possibles dans le select
      * @param {string} defaultChoice Une des actions définies dans le parametre 'choices'
      */
-    constructor(choices, defaultChoice) {
+    constructor(choices, defaultChoice, id, messageLabel) {
 
         this._sortOrder = defaultChoice
         this._choices = choices
@@ -47,6 +47,7 @@ export class CustomListBox {
 
         // Création du select
         this._select = document.createElement( 'select' );
+        this._select.setAttribute('id', id)
         this._divContainer.appendChild(this._select)
 
         // Création des options dans le select

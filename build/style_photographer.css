@@ -30,6 +30,11 @@ h1 {
   height: 50px;
 }
 
+.heart {
+  position: relative;
+  top: 3px;
+}
+
 /* The container must be positioned relative: */
 .custom-select {
   position: relative;
@@ -283,8 +288,8 @@ form textarea {
   font-size: 24px;
   color: #901C1C;
 }
-.photograph-gallery .card-image-header p {
-  margin: 10px 0;
+.photograph-gallery .card-image-header h3 {
+  margin: 5px 0;
   font-weight: 400;
   max-width: 290px;
   white-space: nowrap;
@@ -311,8 +316,9 @@ main select, main select option::before {
   display: flex;
   align-items: center;
   gap: 40px;
+  margin: 2em 0;
 }
-.photograph-sort p {
+.photograph-sort label {
   font-weight: 900;
   padding: 20px 0;
 }

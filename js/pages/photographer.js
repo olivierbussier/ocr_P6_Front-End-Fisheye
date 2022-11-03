@@ -33,7 +33,7 @@ function display(photographer, medias) {
         {label: 'Titre'     , action: 'titre'},
         {label: 'Popularité', action: 'popularite'},
         {label: 'Date'      , action: 'date'}
-    ], 'titre')
+    ], 'titre', 'id-trier', 'Trier par:')
     divSearch.appendChild(sortList.getDomElement())
 
     sortList.setHook(hookSort)

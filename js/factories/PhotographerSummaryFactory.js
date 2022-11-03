@@ -22,7 +22,7 @@
     divSummary.innerHTML =
         `<div>
             <span class="cumul-likes">${cumulatatedLikes}</span>
-            <img src="assets/icons/heart.svg" alt="Total des likes pour le photographe">
+            <img class="heart" src="assets/icons/heart-black.svg" alt="Total des likes pour le photographe">
          </div>
          <div>${price}€ / jour</div>`
 

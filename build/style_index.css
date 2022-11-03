@@ -30,6 +30,11 @@ h1 {
   height: 50px;
 }
 
+.heart {
+  position: relative;
+  top: 3px;
+}
+
 /* The container must be positioned relative: */
 .custom-select {
   position: relative;
