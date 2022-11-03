@@ -102,11 +102,6 @@ function display(photographer, medias) {
     const gallery = new PhotographerGalleryFactory(photographer.name, medias).getDOM()
     divMain.appendChild(gallery)
 
-    function setHookAffFullImage() {
-        medias.forEach((media) => {
-
-        })
-    }
     displaycumulatedLikes()
     setHookIncrementLikes()
 
