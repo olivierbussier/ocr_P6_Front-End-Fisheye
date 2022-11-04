@@ -1,6 +1,5 @@
  /**
  * This file implements validation of form fields
- * In order to fix #2 #3 and #4
  */
 import { checkText   } from "./checkers/check-text.js"
 import { checkEmail  } from "./checkers/check-email.js"
