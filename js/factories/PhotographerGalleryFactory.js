@@ -51,9 +51,9 @@ class PhotographerMediaFactory {
             media = new Video(this._name, likes, video)
         }
 
-        const div = document.createElement( 'section' );
-        div.setAttribute("class","photograph-image")
-        div.innerHTML =
+        const section = this.createSection()
+
+        section.innerHTML =
         `<div class="image-card">
             ${media._html}
             <div class="card-image-header">
@@ -64,7 +64,15 @@ class PhotographerMediaFactory {
                 </div>
             </div>
         </div>`
-        return div
+        return section
+    }
+    createSection() {
+        const section = document.createElement( 'section' )
+        section.setAttribute('class', 'image-thumb')
+        return section
+    }
+    getEmptyMedia() {
+        return this.createSection()
     }
 }
 
@@ -94,9 +102,7 @@ export class PhotographerGalleryFactory {
             })
             div.appendChild(im)
         })
-        var e = document.createElement( 'section' )
-        e.setAttribute('class', 'photograph-image')
-        div.appendChild(e);
+        div.appendChild(new PhotographerMediaFactory(null, null).createSection());
 
         return div
     }

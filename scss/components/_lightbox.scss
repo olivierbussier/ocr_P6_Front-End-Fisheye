@@ -44,7 +44,7 @@
             opacity: 1;
             object-fit: contain;
             height: calc(100vh - 80px);
-            width: 90vw;
+            width: calc(100vw - 100px);
         }
     }
     .close-item {

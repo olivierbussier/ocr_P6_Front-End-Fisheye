@@ -10,62 +10,57 @@
       display: none; /*hide original SELECT element: */
     }
     width: 200px;
-}
-
-.select-selected {
-    background-color: $list-bg-color;
-    color: $list-fg-color;
-    @include padding;
-    border-radius: 5px;
-    cursor: pointer;
-    padding-left: 1em;
-
-        /* Style the arrow inside the select element: */
-    &:after {
-        position: absolute;
-        content: url('/assets/icons/caret-down.svg');
-        top: calc(50% - 15px);
-        right: 10px;
-        width: 30px;
-        height: 30px; 
-        padding: 0;
-        // border: 6px solid transparent;
-        // border-color: #fff transparent transparent transparent;
-    }
-    /* Point the arrow upwards when the select box is open (active): */
-    &.select-arrow-active:after {
-        // border-color: transparent transparent #fff transparent;
-        // top: 7px;
-        content:url('/assets/icons/caret-up.svg');
-    }
-}
-
-    /* Style items (options): */
-.select-items {
-    border-radius: 5px;
-    position: absolute;
-    background-color: $list-bg-color;
-    top: 92%;
-    left: 0;
-    right: 0;
-    z-index: 99;
-    /* style the items (options), including the selected item: */
-    div {
+    .select-selected {
+        background-color: $list-bg-color;
         color: $list-fg-color;
         @include padding;
-        margin: 0 1em;
-        border-top: 1px solid white;
-        // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+        border-radius: $border-radius;
         cursor: pointer;
-    }
-    div:hover, .same-as-selected {
-        // background-color: rgba(0, 0, 0, 0.1);
-        background-color: $list-bg-hov-color;
-    }
-}
+        padding-left: 1em;
 
-
-/* Hide the items when the select box is closed: */
-.select-hide {
-    display: none;
+            /* Style the arrow inside the select element: */
+        &:after {
+            position: absolute;
+            content: url('/assets/icons/caret-down.svg');
+            top: calc(50% - 15px);
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            // border: 6px solid transparent;
+            // border-color: #fff transparent transparent transparent;
+        }
+        /* Point the arrow upwards when the select box is open (active): */
+        &.select-arrow-active:after {
+            // border-color: transparent transparent #fff transparent;
+            // top: 7px;
+            content:url('/assets/icons/caret-up.svg');
+        }
+    }
+    .select-items {
+        border-radius: $border-radius;
+        position: absolute;
+        background-color: $list-bg-color;
+        top: 92%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+        /* style the items (options), including the selected item: */
+        div {
+            color: $list-fg-color;
+            @include padding;
+            margin: 0 1em;
+            border-top: 1px solid white;
+            // border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+            cursor: pointer;
+        }
+        div:hover, .same-as-selected {
+            // background-color: rgba(0, 0, 0, 0.1);
+            background-color: $list-bg-hov-color;
+        }
+    }
+    /* Hide the items when the select box is closed: */
+    .select-hide {
+        display: none;
+    }
 }

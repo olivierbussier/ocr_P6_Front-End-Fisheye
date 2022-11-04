@@ -16,8 +16,8 @@ import { PhotographerSummaryFactory } from "../factories/PhotographerSummaryFact
  */
 function display(photographer, medias) {
 
-    const headerInfo  = document.querySelector(".photograph-info")
-    const headerImage = document.querySelector(".photograph-image")
+    const headerInfo  = document.querySelector(".photograph-header .photograph-info")
+    const headerImage = document.querySelector(".photograph-header .photograph-image")
     const divMain     = document.querySelector("#main")
     const divSearch   = document.querySelector(".photograph-sort")
     const summary     = document.getElementById("summary")

@@ -1,0 +1,70 @@
+// -------------------------------------
+// Styles liés aux inputs de la form
+form {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 32px;
+    & label {
+        color: #312E2E;
+        font-size: 36px;
+    }
+    & div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        align-items: self-start;
+        margin-bottom: 26px;
+    }
+    & input {
+        width: 100%;
+        height: 68px;
+        border: none;
+        border-radius: $border-radius;
+        font-size: 32px;
+    }
+    & textarea {
+        width: 100%;
+        font-size: 32px;
+        border-radius: $border-radius;
+    }
+}
+
+// -------------------------------------
+// Styles liés a l'affichage des erreurs
+// sur les inputs
+.form-data {
+    display: block;
+    &:after {
+        content: attr(data-error);
+        font-size: 24px;
+        font-weight: 900;
+        margin-top: 2px;
+        margin-bottom: 0;
+        color: $color-invalid;
+        display: block;
+        text-align: left;
+        opacity: 0;
+        transition: 0.3s;
+        height: 0.75rem;
+    }
+    .error-msg {
+        background-color: #222;
+        color: $color-invalid;
+    }
+    &:invalid {
+        border-color: $color-invalid;
+    }
+    &:valid {
+        border-color: $color-valid;
+    }
+    &[data-error-visible="true"] {
+        &:after {
+            opacity: 1;
+        }
+        & .text-control {
+            border: 2px solid #e54858;
+        }
+    }
+}
