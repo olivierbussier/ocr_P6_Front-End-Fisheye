@@ -95,7 +95,7 @@ h1 {
   display: none;
 }
 
-.contact-button, .close-button {
+.button {
   font-size: 20px;
   font-weight: bold;
   color: white;
@@ -105,6 +105,7 @@ h1 {
   border: none;
   background-color: #901C1C;
   border-radius: 5px;
+  cursor: pointer;
 }
 
 #contact-modal {
@@ -176,6 +177,39 @@ form input {
 form textarea {
   width: 100%;
   font-size: 32px;
+}
+
+.form-data {
+  display: block;
+}
+.form-data:after {
+  content: attr(data-error);
+  font-size: 24px;
+  font-weight: 900;
+  margin-top: 2px;
+  margin-bottom: 0;
+  color: #901C1C;
+  display: block;
+  text-align: left;
+  opacity: 0;
+  transition: 0.3s;
+  height: 0.75rem;
+}
+.form-data .error-msg {
+  background-color: #222;
+  color: #901C1C;
+}
+.form-data:invalid {
+  border-color: #901C1C;
+}
+.form-data:valid {
+  border-color: green;
+}
+.form-data[data-error-visible=true]:after {
+  opacity: 1;
+}
+.form-data[data-error-visible=true] .text-control {
+  border: 2px solid #e54858;
 }
 
 #light-box {

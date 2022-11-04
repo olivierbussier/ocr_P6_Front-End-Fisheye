@@ -1,6 +1,6 @@
 //Mettre le code JavaScript lié à la page photographer.html
 
-import { setupEventModal } from "./contactForm.js"
+import { ModalForm } from "../components/ModalForm.js"
 
 import { PhotographerHeaderFactory } from "../factories/PhotographerHeaderFactory.js"
 import { PhotographerGalleryFactory } from "../factories/PhotographerGalleryFactory.js"
@@ -133,9 +133,8 @@ function display(photographer, medias) {
 
     display(photographer, gallery)
 
-    // Mise en place des hooks pour les fenêtres modal
-
-    setupEventModal()
+    // Création de l'instance Modal pour le formulaire de contact
+    const modal = new ModalForm(document.querySelectorAll("div.modal form input"))
 }
 
 init();

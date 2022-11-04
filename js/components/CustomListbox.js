@@ -21,7 +21,7 @@ export class CustomListBox {
      *
      * La structure du DOM créée est la suivante:
      *
-     * <div class="custom-select">
+     * ```<div class="custom-select">
      *      <select>
      *          <option name value>Option label</option>
      *          ...
@@ -31,7 +31,7 @@ export class CustomListBox {
      *          <div data-value="">option label</div>
      *          ...
      *      </div>
-     * </div>`
+     * </div>```
      *
      * @param {{label: string, action: string}[]} choices Liste des options possibles dans le select
      * @param {string} defaultChoice Une des actions définies dans le parametre 'choices'
