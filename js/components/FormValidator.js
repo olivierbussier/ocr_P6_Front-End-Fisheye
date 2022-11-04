@@ -81,11 +81,3 @@ export class FormValidator {
         return !validationFailed
     }
 }
-
-export const initFormDataController = () => {
-
-    // Setup a trigger for submit button in modal box
-
-    const form = document.getElementById("submit-action");
-    form.addEventListener('click', e => checkInputs(e))
-}
