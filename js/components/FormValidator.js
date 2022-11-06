@@ -27,8 +27,9 @@ export class FormValidator {
         var result = []
         var f = {}
         this._inputs.forEach((field) => {
-            f.name = field.name
-            f.value = field.value
+            const target = field.querySelectorAll('input, textarea')[0]
+            f.name = target.name
+            f.value = target.value
             result.push(structuredClone(f))
         })
         return result
@@ -36,9 +37,10 @@ export class FormValidator {
 
     clearFields() {
         this._inputs.forEach((element) => {
-            element.value = ''
-            element.parentElement.setAttribute("data-error", "")
-            element.parentElement.setAttribute("data-error-visible", false)
+            const target = field.querySelectorAll('input, textarea')[0]
+            target.value = ''
+            target.parentElement.setAttribute("data-error", "")
+            target.parentElement.setAttribute("data-error-visible", false)
         })
     }
 
@@ -56,10 +58,16 @@ export class FormValidator {
         }
 
         this._inputs.forEach((field) => {
-            const validationFunction = validationFunctions[field.getAttribute('type')]
+            const target = field.querySelectorAll('input, textarea')[0]
+            var validationFunction
+            if (target.type === 'textarea') {
+                validationFunction = validationFunctions['textarea']
+            } else {
+                validationFunction = validationFunctions[target.getAttribute('type')]
+            }
             if (validationFunction) {
-                a = validationFunction(field)
-                const formData = field.parentElement;
+                a = validationFunction(target)
+                const formData = target.parentElement;
                 if (a.result == true) {
                     // Field constraints are fullfilled
                     // Clear eventually previous error message

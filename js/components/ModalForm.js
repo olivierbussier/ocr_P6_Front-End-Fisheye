@@ -8,7 +8,7 @@ export class ModalForm {
         this._buttonSubmit = this._modal.querySelector("form button.button")
         this._form = document.querySelector(".modal form")
         this.setupEventModal()
-        this._formValidator = new FormValidator(document.querySelectorAll("form input, form textarea"))
+        this._formValidator = new FormValidator(document.querySelectorAll(".form-data"))
     }
     handleOpenModal() {
         // Recherche du champ avec l'attribut "autofocus" afin de positionner le focus dessus
