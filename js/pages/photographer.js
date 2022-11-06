@@ -47,7 +47,8 @@ function display(photographer, medias) {
         medias.sort((elem1, elem2) => {
             switch (sortMode) {
                 case 'titre':      return elem1.title.localeCompare(elem2.title); break
-                case 'popularite': return elem1.likes <= elem2.likes ? -1 : 1 ; break
+                case 'popularite':
+                    return elem1.likes >= elem2.likes ? -1 : 1 ; break
                 case 'date':       return new Date(elem1.date) <= new Date(elem2.date) ? -1 : 1 ; break
             }
         })

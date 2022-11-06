@@ -42,25 +42,28 @@
 
                     <form novalidate method="get" action="#">
                         <div>
-                            <div class="form-data">
-                                <label for="first">Prénom</label>
-                                <input type="text" name="first" id="first" autofocus minlength="2" required>
-                            </div>
+                            <fieldset>
+                                <legend>Entrez vos coordonnées et votre demande</legend>
+                                <div class="form-data">
+                                    <label for="first">Prénom</label>
+                                    <input type="text" name="first" id="first" autofocus minlength="2" required>
+                                </div>
 
-                            <div class="form-data">
-                                <label for="last">Nom</label>
-                                <input type="text" name="last" id="last" minlength="2" required>
-                            </div>
+                                <div class="form-data">
+                                    <label for="last">Nom</label>
+                                    <input type="text" name="last" id="last" minlength="2" required>
+                                </div>
 
-                            <div class="form-data">
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" required>
-                            </div>
+                                <div class="form-data">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" id="email" required>
+                                </div>
 
-                            <div class="form-data">
-                                <label for="message">Votre message</label>
-                                <textarea type="textarea" name="message" id="message" rows="5" minlength="16" maxlength="256" required></textarea>
-                            </div>
+                                <div class="form-data">
+                                    <label for="message">Votre message</label>
+                                    <textarea type="textarea" name="message" id="message" rows="5" minlength="16" maxlength="256" required></textarea>
+                                </div>
+                            </fieldset>
                         </div>
                         <button class="button">Envoyer</button>
                     </form>

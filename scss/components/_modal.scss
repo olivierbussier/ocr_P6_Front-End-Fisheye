@@ -24,6 +24,9 @@
     z-index: 3;
 }
 
+fieldset {
+    border:none;
+}
 .modal {
     border-radius: $border-radius;
     background-color: #DB8876;
