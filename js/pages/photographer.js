@@ -83,20 +83,24 @@ function display(photographer, medias) {
 
     }
 
+    function addLike(event, element) {
+        if (event === 'key' && element.keyCode != 13)
+            return
+        const id = element.target.getAttribute('data-id')
+        medias.forEach((media) => {
+            if (media.id === parseInt(id)) {
+                media.likes++
+                // Update du compteur de likes
+                const span = element.target.previousElementSibling
+                span.innerText = media.likes
+                displaycumulatedLikes()
+            }
+        })
+    }
     function setHookIncrementLikes() {
         document.querySelectorAll("img.increment-likes").forEach((element) => {
-            element.addEventListener("click", (element) => {
-                const id = element.target.getAttribute('data-id')
-                medias.forEach((media) => {
-                    if (media.id === parseInt(id)) {
-                        media.likes++
-                        // Update du compteur de likes
-                        const span = element.target.previousElementSibling
-                        span.innerText = media.likes
-                        displaycumulatedLikes()
-                    }
-                })
-            })
+            element.addEventListener("click", e => addLike('click', e))
+            element.addEventListener("keydown", e => addLike('key', e))
         })
     }
     // Affichage des images de la gallerie triées

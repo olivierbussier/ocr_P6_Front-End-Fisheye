@@ -60,7 +60,7 @@ class PhotographerMediaFactory {
                 <h3>${title}</h3>
                 <div>
                     <span>${likes}</span>
-                    <img class="increment-likes heart" data-id="${id}" src="assets/icons/heart.svg" alt="Incrémenter le compteur de likes">
+                    <img tabindex="0" class="increment-likes heart" data-id="${id}" src="assets/icons/heart.svg" alt="Incrémenter le compteur de likes">
                 </div>
             </div>
         </div>`
